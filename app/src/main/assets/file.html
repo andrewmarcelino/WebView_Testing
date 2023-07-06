@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <style>
+        body {
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        button {
+            cursor: pointer;
+            outline: 0;
+            color: #fff;
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            display: inline-block;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+            border: 1px solid transparent;
+            padding: 6px 12px;
+            margin: 4px 0px;
+            font-size: 16px;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+        }
+        button:hover {
+            color: #fff;
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+        }
+    </style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebView Testing</title>
+    </head>
+    <body>
+        <div>
+            <label>This is a test web page.</label>
+        </div>
+        <div>
+            <button onclick="redirectAppPage()">Redirect App Page with Callback</button>
+        </div>
+        <div>
+            <button onclick="redirectInputPage()">Go To Test Input Page</button>
+        </div>
+        <div>
+            <button onclick="showToast()">Show Toast</button>
+        </div>
+    </body>
+
+    <script>
+        const checkInterface = (callback) => {
+            if(typeof AndroidJSInterface == "undefined") {
+                console.log("Interface not Found!");
+                return;
+            } else {
+                callback();
+            }
+        }
+        const redirectAppPage = () => {
+            checkInterface(() => {
+                AndroidJSInterface.redirectPage("InputFragment");
+            });
+        };
+
+        const redirectInputPage = () => {
+            window.location = "file_input.html"
+        }
+
+        const showToast = () => {
+            checkInterface(() => {
+                AndroidJSInterface.showToast();
+            });
+        };
+    </script>
+</html>
