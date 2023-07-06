@@ -47,9 +47,16 @@
         <div>
             <button onclick="showToast()">Show Toast</button>
         </div>
+        <div>
+            <button onclick="redirectToApple()">Test Webpage Loading</button>
+        </div>
     </body>
 
     <script>
+        const redirectToApple = () => {
+            window.location = "https://www.apple.com"
+        };
+
         const checkInterface = (callback) => {
             if(typeof AndroidJSInterface == "undefined") {
                 console.log("Interface not Found!");

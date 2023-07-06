@@ -20,10 +20,16 @@ class InputFragment : Fragment() {
         val navController = findNavController()
         val sharedPreferences:SharedPreferences = view.context.getSharedPreferences("DEFAULT_PREFERENCES",
             Context.MODE_PRIVATE)
-        view.findViewById<TextView>(R.id.name_input).text = sharedPreferences.getString("name","-")
-        view.findViewById<TextView>(R.id.age_input).text = sharedPreferences.getInt("age",0).toString()
 
-        view.findViewById<Button>(R.id.button).setOnClickListener {
+        val nameInput = view.findViewById<TextView>(R.id.name_input)
+        val ageInput = view.findViewById<TextView>(R.id.age_input)
+        val button = view.findViewById<Button>(R.id.button)
+
+        //Set texts
+        nameInput.text = sharedPreferences.getString("name","-")
+        ageInput.text = sharedPreferences.getInt("age",0).toString()
+
+        button.setOnClickListener {
             navController.navigate(R.id.action_inputFragment_to_homeFragment)
         }
 
